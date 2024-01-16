@@ -3,7 +3,7 @@ import axios from 'axios'
 const getReviews = async (id,  setError, setLoading) => {
   try {
     const res = await axios.get(
-      `http://localhost:5009/books/get-reviews/${id}`,
+      `${import.meta.env.VITE_PROD_BASE_URL}/books/get-reviews/${id}`,
       {
         withCredentials: true,
       }

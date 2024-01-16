@@ -26,13 +26,13 @@ export const addToFavorites = async (userId,bookId) => {
 export const deleteFromFavorites = async (userId,bookId) => {
     console.log(userId, bookId);
     try {
-        const res=  await axios.put(
-           "http://localhost:5009/user/remove-favorites",{userId,bookId},
-           {
-               withCredentials: true,
-               
-           }
-          );
+        const res = await axios.put(
+          `${import.meta.env.VITE_PROD_BASE_URL}/user/remove-favorites`,
+          { userId, bookId },
+          {
+            withCredentials: true,
+          }
+        );
          if (res.status !== 200) {
            throw new Error(`Failed add to favorites with status: ${res.status}`);
          } else {

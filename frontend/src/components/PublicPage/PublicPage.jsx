@@ -33,7 +33,7 @@ const PublicPage = () => {
     try {
       // Open the Google authentication page in a new window/tab
       const authWindow = window.open(
-        "http://localhost:5009/auth/google",
+        `${import.meta.env.VITE_PROD_BASE_URL}/auth/google`,
         "_blank"
       );
 

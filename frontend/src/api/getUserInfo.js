@@ -5,9 +5,12 @@ console.log(id);
   if (id) {
 
     try {
-      const res = await axios.get(`http://localhost:5009/getUser/${id}`, {
-        withCredentials: true,
-      });
+      const res = await axios.get(
+        `${import.meta.env.VITE_PROD_BASE_URL}/getUser/${id}`,
+        {
+          withCredentials: true,
+        }
+      );
 
       if (res.status !== 200) {
         throw new Error(`Failed to fetch data with status: ${res.status}`);

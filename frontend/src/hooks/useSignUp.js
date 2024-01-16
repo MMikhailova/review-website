@@ -70,9 +70,13 @@ export const useSignUp = () => {
     setError(null);
 
     try {
-      const res = await axios.post("http://localhost:5009/signup", formData, {
-        withCredentials: true,
-      });
+      const res = await axios.post(
+        `${import.meta.env.VITE_PROD_BASE_URL}/signup`,
+        formData,
+        {
+          withCredentials: true,
+        }
+      );
       if (res.status !== 201) {
         isLoading(false);
         setError(res.message);

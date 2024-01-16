@@ -28,9 +28,12 @@ function NavBar() {
     const isGoogleAuth = Cookies.get("isGoogleAuth") === "true";
     if (isGoogleAuth) {
       try {
-        const res = await axios.post("http://localhost:5009/auth/logout", {
-          withCredentials: true,
-        });
+        const res = await axios.post(
+          `${import.meta.env.VITE_PROD_BASE_URL}/auth/logout`,
+          {
+            withCredentials: true,
+          }
+        );
         if (res.data === "done") {
           window.location.href = "/";
         }

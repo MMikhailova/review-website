@@ -16,7 +16,8 @@ import LogoutIcon from "@mui/icons-material/Logout";
 import { AuthContext } from "../../context/AuthContext.jsx";
 import { useContext, useState } from "react";
 import { Stack } from "@mui/material";
-import { useLogout } from "../../hooks/useLogOUt.js";
+import { useLogout } from "../../hooks/useLogOut.js"
+
 const settings = ["Your reviews", "Favorites"];
 
 function NavBar() {

@@ -5,7 +5,9 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "dev": "nodemon src/index.js"
+    "dev": "nodemon src/index.js",
+    "start": "node dist/index.js",
+     "build": "npm install"
   },
   "keywords": [],
   "author": "",

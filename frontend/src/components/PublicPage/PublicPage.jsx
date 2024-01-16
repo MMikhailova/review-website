@@ -126,20 +126,25 @@ const PublicPage = () => {
 
       <Box
         sx={{
-          width: "50vw",
+          width: "50%",
           height: "80vh",
-          overflowY: "scroll",
-          "&::-webkit-scrollbar": {
-            width: 0, // Hide scrollbar for webkit browsers
-          },
           display: "flex",
           justifyContent: "center",
-          alignItems: "center",
+          // alignItems: "center",
         }}
       >
         {loading && <CircularProgress sx={{ color: "white" }} size={"3rem"} />}
         {books.length > 0 && (
-          <ImageList cols={3} rowHeight={350}>
+          <ImageList
+            cols={3}
+            rowHeight={350}
+            sx={{
+              overflowY: "scroll",
+              "&::-webkit-scrollbar": {
+                width: 0, // Hide scrollbar for webkit browsers
+              },
+            }}
+          >
             {books.map((book) => (
               <ImageListItem key={book.url} m={2}>
                 <img
@@ -170,7 +175,7 @@ const PublicPage = () => {
           </ImageList>
         )}
       </Box>
-      </Container>
+    </Container>
   );
 };
 

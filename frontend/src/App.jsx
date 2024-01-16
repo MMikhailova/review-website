@@ -15,6 +15,7 @@ import { useContext } from "react";
 // Styles
 import './GlobalStyles.css'
 import { createTheme, ThemeProvider } from "@mui/material/styles";
+import ErrorAlert from './components/ErrorPage/ErrorPage.jsx';
 
 
 const theme = createTheme({
@@ -50,12 +51,22 @@ function App() {
           ) : (
             <Route path="/" element={<PublicPage />} />
           )}
-          <Route path="/home" element={<HomePage />} />
+          <Route path="/home" element={token ? <HomePage /> : <ErrorAlert />} />
+          <Route
+            path="/user/reviews"
+            element={token ? <Reviews /> : <ErrorAlert />}
+          />
+          <Route
+            path="/user/favorites"
+            element={token ? <Favorites /> : <ErrorAlert />}
+          />
+
+          <Route
+            path="/book/:bookId"
+            element={token ? <BookPage /> : <ErrorAlert />}
+          />
           <Route path="/signup" element={<SignUp />} />
           <Route path="/login" element={<LoginPage />} />
-          <Route path="/user/reviews" element={<Reviews />} />
-          <Route path="/user/favorites" element={<Favorites />} />
-          <Route path="/book/:bookId" element={<BookPage />} />
         </Routes>
       </Router>
     </ThemeProvider>

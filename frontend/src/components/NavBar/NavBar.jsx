@@ -1,11 +1,6 @@
-import { Link, useNavigate } from "react-router-dom";
-import styles from "./NavBar.module.css";
+import { useNavigate } from "react-router-dom";
 import Cookies from "js-cookie";
 import axios from "axios";
-
-
-import { useLogout } from "../../hooks/useLogOUt";
-
 import logo from "../../assets/logo.png";
 
 import AppBar from "@mui/material/AppBar";
@@ -15,15 +10,13 @@ import IconButton from "@mui/material/IconButton";
 import Typography from "@mui/material/Typography";
 import Menu from "@mui/material/Menu";
 import Container from "@mui/material/Container";
-import Button from "@mui/material/Button";
-import Tooltip from "@mui/material/Tooltip";
 import MenuItem from "@mui/material/MenuItem";
-import MenuBookIcon from "@mui/icons-material/MenuBook";
 import AccountCircleIcon from "@mui/icons-material/AccountCircle";
 import LogoutIcon from "@mui/icons-material/Logout";
 import { AuthContext } from "../../context/AuthContext.jsx";
 import { useContext, useState } from "react";
 import { Stack } from "@mui/material";
+import { useLogout } from "../../hooks/useLogOUt.js";
 const settings = ["Your reviews", "Favorites"];
 
 function NavBar() {

@@ -1,5 +1,6 @@
 import { Alert, Box,Button,Typography } from '@mui/material'
-import { useLogout } from '../../hooks/useLogOUt';
+import { useLogout } from '../../hooks/useLogOut.js';
+
 
 const ErrorAlert = () => {
      const { logout } = useLogout();

@@ -1,4 +1,5 @@
-import  'express-async-errors'
+import 'express-async-errors'
+import cookieParser from "cookie-parser";
 import express from 'express'
 import dotenv from "dotenv"
 import mongoose from 'mongoose'
@@ -12,9 +13,12 @@ import bookRoutes from "../route/book.js";
 import userRoutes from "../route/user.js";
 //dotenv to load environment variable
 dotenv.config();
+
 const PORT = process.env.PORT || 5002;
 //app is an object with methods
 const app = express();
+app.use(cookieParser());
+app.use(express.urlencoded({ extended: true }));
 //Middleware
 // handle JSON payloads in the request body.
 app.use(express.json())
@@ -27,11 +31,11 @@ const devOrigin = ["http://localhost:5173"];
 const allowedOrigins=process.env.NODE_ENV==='production'?prodOrigins:devOrigin
 app.use(cors({
   origin: (origin, callback) => {
-    if (allowedOrigins.includes(origin)) {
+    if (!origin||allowedOrigins.includes(origin)) {
       console.log(origin, allowedOrigins);
-      callback(null,true)
+      callback(null, true);
     } else {
-      callback(new Error('Not allowed by CORS'))
+      callback(new Error("Not allowed by CORS"));
     }
   }, credentials: true,
   methods:['GET','POST','PUT','DELETE']

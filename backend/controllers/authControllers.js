@@ -102,12 +102,15 @@ console.log(email, password, confirmPassword, firstName, lastName);
     };
     // Set cookies
     res.cookie("id", newUser.id, {
+      httpOnly: true,
       secure: true,
     });
     res.cookie("token", newUser.token, {
+      httpOnly: true,
       secure: true,
     });
     res.cookie("isGoogleAuth", newUser.isGoogleAuth, {
+      httpOnly: true,
       secure: true,
     });
     return res.status(201).json({ newUser });

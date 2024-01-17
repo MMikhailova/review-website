@@ -53,19 +53,19 @@ const authControllers = {
       secure: true,
       sameSite: "none", // For cross-site cookies
       httpOnly: true, // Improve security by preventing client-side access
-      domain: "https://review-website-bice.vercel.app", // Allow subdomains if needed
+      domain: ".vercel.app", // Allow subdomains if needed
     });
     res.cookie("token", userData.token, {
       secure: true,
       sameSite: "none", // For cross-site cookies
       httpOnly: true, // Improve security by preventing client-side access
-      domain: "https://review-website-bice.vercel.app", // Allow subdomains if needed
+      domain: ".vercel.app", // Allow subdomains if needed
     });
     res.cookie("isGoogleAuth", userData.isGoogleAuth, {
       secure: true,
       sameSite: "none", // For cross-site cookies
       httpOnly: true, // Improve security by preventing client-side access
-      domain: "https://review-website-bice.vercel.app", // Allow subdomains if needed
+      domain: ".vercel.app", // Allow subdomains if needed
     });
     return res.status(200).json({ userData });
   },
@@ -114,19 +114,19 @@ console.log(email, password, confirmPassword, firstName, lastName);
       secure: true,
       sameSite: "none", // For cross-site cookies
       httpOnly: true, // Improve security by preventing client-side access
-      domain: "https://review-website-bice.vercel.app", // Allow subdomains if needed
+      domain: ".vercel.app", // Allow subdomains if needed
     });
     res.cookie("token", newUser.token, {
       secure: true,
       sameSite: "none", // For cross-site cookies
       httpOnly: true, // Improve security by preventing client-side access
-      domain: "https://review-website-bice.vercel.app", // Allow subdomains if needed
+      domain: ".vercel.app", // Allow subdomains if needed
     });
     res.cookie("isGoogleAuth", newUser.isGoogleAuth, {
       secure: true,
       sameSite: "none", // For cross-site cookies
       httpOnly: true, // Improve security by preventing client-side access
-      domain: "https://review-website-bice.vercel.app", // Allow subdomains if needed
+      domain: ".vercel.app", // Allow subdomains if needed
     });
     return res.status(201).json({ newUser });
   },

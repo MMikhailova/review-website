@@ -38,19 +38,19 @@ router.get(
       secure: true,
       sameSite: "none", // For cross-site cookies
       httpOnly: true, // Improve security by preventing client-side access
-      domain: "https://review-website-bice.vercel.app", // Allow subdomains if needed
+      domain: ".vercel.app", // Allow subdomains if needed
     });
     res.cookie("token", userData.token, {
       secure: true,
       sameSite: "none", // For cross-site cookies
       httpOnly: true, // Improve security by preventing client-side access
-      domain: "https://review-website-bice.vercel.app", // Allow subdomains if needed
+      domain: ".vercel.app", // Allow subdomains if needed
     });
     res.cookie("isGoogleAuth", userData.isGoogleAuth, {
       secure: true,
       sameSite: "none", // For cross-site cookies
       httpOnly: true, // Improve security by preventing client-side access
-      domain: "https://review-website-bice.vercel.app", // Allow subdomains if needed
+      domain: ".vercel.app", // Allow subdomains if needed
     });
     // Send a postMessage to the main window with the user data
     res.send(`

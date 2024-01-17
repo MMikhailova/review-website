@@ -26,25 +26,23 @@ app.use(express.json())
 /**
  * cross-origin configuration
  */
-// const prodOrigins = process.env.ORIGIN
-// const devOrigin = ["http://localhost:5173"];
-// const allowedOrigins=process.env.NODE_ENV==="production"?prodOrigins:devOrigin
+
 app.use(
   cors({
-    origin: "https://review-website-bice.vercel.app",
+    origin: "*",
     credentials: true,
   })
 );
 
 
 app.use(errorHandler);
-app.use(
-    session({
-        secret: "secretcode",
-        resave: true,
-        saveUninitialized:true
-    })
-)
+// app.use(
+//     session({
+//         secret: "secretcode",
+//         resave: true,
+//         saveUninitialized:true
+//     })
+// )
 app.use(passport.initialize());
 app.use(passport.session())
 //taking whole user object from auth and store it into session

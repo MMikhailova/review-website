@@ -29,12 +29,18 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(cookieParser());
 app.use(
-    session({
-        secret: "secretcode",
-        resave: true,
-        saveUninitialized:true
-    })
-)
+  session({
+    secret: "secretcode",
+    resave: true,
+    saveUninitialized: true,
+    cookie: {
+      secure: true,
+      sameSite: "None",
+      domain: ".onrender.com", // Update this to match your Render domain
+      path: "/",
+    },
+  })
+);
 app.use(errorHandler);
 
 //For Google oAuth. Take whole user object from auth and store it into session

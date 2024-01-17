@@ -49,24 +49,9 @@ const authControllers = {
       lastName: existingUser.lastName,
     };
     // Set cookies
-    res.cookie("id", userData.id, {
-      secure: true,
-      // sameSite: "none", // For cross-site cookies
-      // httpOnly: true, // Improve security by preventing client-side access
-      // domain: ".vercel.app", // Allow subdomains if needed
-    });
-    res.cookie("token", userData.token, {
-      secure: true,
-      sameSite: "none", // For cross-site cookies
-      httpOnly: true, // Improve security by preventing client-side access
-      domain: ".vercel.app", // Allow subdomains if needed
-    });
-    res.cookie("isGoogleAuth", userData.isGoogleAuth, {
-      secure: true,
-      sameSite: "none", // For cross-site cookies
-      httpOnly: true, // Improve security by preventing client-side access
-      domain: ".vercel.app", // Allow subdomains if needed
-    });
+    res.cookie("id", userData.id);
+    res.cookie("token", userData.token);
+    res.cookie("isGoogleAuth", userData.isGoogleAuth);
     return res.status(200).json({ userData });
   },
   signUp: async (req, res) => {
@@ -110,24 +95,9 @@ console.log(email, password, confirmPassword, firstName, lastName);
       lastName: result.lastName
     };
     // Set cookies
-    res.cookie("id", newUser.id, {
-      secure: true,
-      sameSite: "none", // For cross-site cookies
-      httpOnly: true, // Improve security by preventing client-side access
-      domain: ".vercel.app", // Allow subdomains if needed
-    });
-    res.cookie("token", newUser.token, {
-      secure: true,
-      sameSite: "none", // For cross-site cookies
-      httpOnly: true, // Improve security by preventing client-side access
-      domain: ".vercel.app", // Allow subdomains if needed
-    });
-    res.cookie("isGoogleAuth", newUser.isGoogleAuth, {
-      secure: true,
-      sameSite: "none", // For cross-site cookies
-      httpOnly: true, // Improve security by preventing client-side access
-      domain: ".vercel.app", // Allow subdomains if needed
-    });
+    res.cookie("id", newUser.id, );
+    res.cookie("token", newUser.token);
+    res.cookie("isGoogleAuth", newUser.isGoogleAuth);
     return res.status(201).json({ newUser });
   },
 };

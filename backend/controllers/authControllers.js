@@ -51,9 +51,9 @@ const authControllers = {
     // Set cookies
     res.cookie("id", userData.id, {
       secure: true,
-      sameSite: "none", // For cross-site cookies
-      httpOnly: true, // Improve security by preventing client-side access
-      domain: ".vercel.app", // Allow subdomains if needed
+      // sameSite: "none", // For cross-site cookies
+      // httpOnly: true, // Improve security by preventing client-side access
+      // domain: ".vercel.app", // Allow subdomains if needed
     });
     res.cookie("token", userData.token, {
       secure: true,

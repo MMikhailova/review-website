@@ -15,11 +15,9 @@ import userRoutes from "../route/user.js";
 dotenv.config();
 
 const PORT = process.env.PORT || 5002;
-//app is an object with methods
 const app = express();
-/**
- * cross-origin configuration
- */
+
+//cross - origin configuration
 app.use(
   cors({
     origin: "https://review-website-bice.vercel.app",
@@ -27,7 +25,6 @@ app.use(
   })
 );
 //Middleware
-// handle JSON payloads in the request body.
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(cookieParser());
@@ -40,10 +37,11 @@ app.use(
 )
 app.use(errorHandler);
 
+//For Google oAuth. Take whole user object from auth and store it into session
 app.use(passport.initialize());
 app.use(passport.session())
-//taking whole user object from auth and store it into session
 
+//Routes
 app.use(authRoutes);
 app.use(bookRoutes);
 app.use(userRoutes);

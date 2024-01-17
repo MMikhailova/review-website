@@ -2,6 +2,7 @@ import { useState } from "react";
 import { useAuthContext } from "./useAuthContext.js";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
+import Cookies from "js-cookie";
 export const useSignUp = () => {
   const [error, setError] = useState(null);
   const [isLoading, setIsLoading] = useState(null);
@@ -23,7 +24,7 @@ export const useSignUp = () => {
       if (res.data) {
         setIsLoading(false);
         const user = res.data.userData;
-
+Cookies.set("id",user.id)
         //update the auth state
         dispatch({
           type: "LOGIN",
@@ -82,7 +83,7 @@ export const useSignUp = () => {
       }
       if (res.data) {
         const user = res.data.newUser;
-      console.log(user);
+    
         dispatch({
           type: "LOGIN",
           payload: {

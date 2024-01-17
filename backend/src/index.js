@@ -17,22 +17,21 @@ dotenv.config();
 const PORT = process.env.PORT || 5002;
 //app is an object with methods
 const app = express();
-app.use(cookieParser());
-app.use(express.urlencoded({ extended: true }));
-//Middleware
 // handle JSON payloads in the request body.
-app.use(express.json())
-
+//Middleware
 /**
  * cross-origin configuration
  */
-
+app.use(express.json())
 app.use(
   cors({
     origin: "https://review-website-bice.vercel.app",
     credentials: true,
   })
 );
+app.use(cookieParser());
+app.use(express.urlencoded({ extended: true }));
+
 
 
 app.use(errorHandler);

@@ -32,13 +32,7 @@ app.use(
   session({
     secret: "secretcode",
     resave: true,
-    saveUninitialized: true,
-    cookie: {
-      secure: true,
-      sameSite: "None",
-      domain: ".onrender.com", // Update this to match your Render domain
-      path: "/",
-    },
+    saveUninitialized: true
   })
 );
 app.use(errorHandler);

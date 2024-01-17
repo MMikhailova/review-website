@@ -49,9 +49,21 @@ const authControllers = {
       lastName: existingUser.lastName,
     };
     // Set cookies
-    res.cookie("id", userData.id);
-    res.cookie("token", userData.token);
-    res.cookie("isGoogleAuth", userData.isGoogleAuth);
+    res.cookie("id", userData.id, {
+      httpOnly: true, //accessible only by web server
+      secure: true, //https
+      sameSite: "None" //cross-site cookie
+    });
+    res.cookie("token", userData.token, {
+      httpOnly: true, //accessible only by web server
+      secure: true, //https
+      sameSite: "None", //cross-site cookie
+    });
+    res.cookie("isGoogleAuth", userData.isGoogleAuth,{
+      httpOnly: true, //accessible only by web server
+      secure: true, //https
+      sameSite: "None", //cross-site cookie
+    });
     return res.status(200).json({ userData });
   },
   signUp: async (req, res) => {

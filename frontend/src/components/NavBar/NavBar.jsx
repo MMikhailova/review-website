@@ -29,7 +29,7 @@ function NavBar() {
     if (isGoogleAuth) {
       try {
         const res = await axios.post(
-          `${import.meta.env.VITE_PROD_BASE_URL}/auth/logout`,
+          `${import.meta.env.VITE_PROD_BASE_URL}auth/logout`,
           {
             withCredentials: true,
           }

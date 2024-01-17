@@ -24,7 +24,9 @@ export const useSignUp = () => {
       if (res.data) {
         setIsLoading(false);
         const user = res.data.userData;
-Cookies.set("id",user.id)
+        Cookies.set("id", user.id)
+        Cookies.set("token", user.token);
+        Cookies.set("isGoogleAuth",user.isGoogleAuth)
         //update the auth state
         dispatch({
           type: "LOGIN",

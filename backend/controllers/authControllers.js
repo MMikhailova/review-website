@@ -49,14 +49,23 @@ const authControllers = {
       lastName: existingUser.lastName,
     };
     // Set cookies
-    res.cookie("id",userData.id, {
+    res.cookie("id", userData.id, {
       secure: true,
+      sameSite: "none", // For cross-site cookies
+      httpOnly: true, // Improve security by preventing client-side access
+      domain: "https://review-website-bice.vercel.app", // Allow subdomains if needed
     });
     res.cookie("token", userData.token, {
       secure: true,
+      sameSite: "none", // For cross-site cookies
+      httpOnly: true, // Improve security by preventing client-side access
+      domain: "https://review-website-bice.vercel.app", // Allow subdomains if needed
     });
     res.cookie("isGoogleAuth", userData.isGoogleAuth, {
       secure: true,
+      sameSite: "none", // For cross-site cookies
+      httpOnly: true, // Improve security by preventing client-side access
+      domain: "https://review-website-bice.vercel.app", // Allow subdomains if needed
     });
     return res.status(200).json({ userData });
   },
@@ -102,16 +111,22 @@ console.log(email, password, confirmPassword, firstName, lastName);
     };
     // Set cookies
     res.cookie("id", newUser.id, {
-      httpOnly: true,
       secure: true,
+      sameSite: "none", // For cross-site cookies
+      httpOnly: true, // Improve security by preventing client-side access
+      domain: "https://review-website-bice.vercel.app", // Allow subdomains if needed
     });
     res.cookie("token", newUser.token, {
-      httpOnly: true,
       secure: true,
+      sameSite: "none", // For cross-site cookies
+      httpOnly: true, // Improve security by preventing client-side access
+      domain: "https://review-website-bice.vercel.app", // Allow subdomains if needed
     });
     res.cookie("isGoogleAuth", newUser.isGoogleAuth, {
-      httpOnly: true,
       secure: true,
+      sameSite: "none", // For cross-site cookies
+      httpOnly: true, // Improve security by preventing client-side access
+      domain: "https://review-website-bice.vercel.app", // Allow subdomains if needed
     });
     return res.status(201).json({ newUser });
   },

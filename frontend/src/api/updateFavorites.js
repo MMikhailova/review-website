@@ -4,7 +4,7 @@ export const addToFavorites = async (userId,bookId) => {
     console.log(userId, bookId);
     try {
         const res=  await axios.put(
-           "http://localhost:5009/user/add-favorites/",{userId,bookId},
+           `${import.meta.env.VITE_PROD_BASE_URL}/user/add-favorites/`,{userId,bookId},
            {
                withCredentials: true,
                

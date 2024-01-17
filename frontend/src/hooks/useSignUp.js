@@ -2,7 +2,6 @@ import { useState } from "react";
 import { useAuthContext } from "./useAuthContext.js";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
-import Cookies from "js-cookie";
 export const useSignUp = () => {
   const [error, setError] = useState(null);
   const [isLoading, setIsLoading] = useState(null);
@@ -13,7 +12,7 @@ export const useSignUp = () => {
     setIsLoading(true);
     setError(null);
     try {
-      const res = await axios.post("http://localhost:5009/signin", formData, {
+      const res = await axios.post(`${import.meta.env.VITE_PROD_BASE_URL}/signin`, formData, {
         withCredentials: true,
       });
 

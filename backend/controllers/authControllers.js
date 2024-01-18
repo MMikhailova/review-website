@@ -52,17 +52,20 @@ const authControllers = {
     res.cookie("id", userData.id, {
       httpOnly: true, //accessible only by web server
       secure: true, //https
-      sameSite: "None" //cross-site cookie
+      sameSite: "None", //cross-site cookie
+      maxAge: 7 * 24 * 60 * 60 * 1000 //cookie expiry: set to match rT
     });
     res.cookie("token", userData.token, {
       httpOnly: true, //accessible only by web server
       secure: true, //https
-      sameSite: "None", //cross-site cookie
+      sameSite: "None",
+      maxAge: 7 * 24 * 60 * 60 * 1000//cross-site cookie
     });
-    res.cookie("isGoogleAuth", userData.isGoogleAuth,{
+    res.cookie("isGoogleAuth", userData.isGoogleAuth, {
       httpOnly: true, //accessible only by web server
       secure: true, //https
-      sameSite: "None", //cross-site cookie
+      sameSite: "None",
+      maxAge: 7 * 24 * 60 * 60 * 1000 //cross-site cookie
     });
     return res.status(200).json({ userData });
   },
@@ -107,8 +110,18 @@ console.log(email, password, confirmPassword, firstName, lastName);
       lastName: result.lastName
     };
     // Set cookies
-    res.cookie("id", newUser.id, );
-    res.cookie("token", newUser.token);
+    res.cookie("id", newUser.id, {
+      httpOnly: true, //accessible only by web server
+      secure: true, //https
+      sameSite: "None",
+      maxAge: 7 * 24 * 60 * 60 * 1000, //cross-site cookie
+    });
+    res.cookie("token", newUser.token, {
+      httpOnly: true, //accessible only by web server
+      secure: true, //https
+      sameSite: "None",
+      maxAge: 7 * 24 * 60 * 60 * 1000, //cross-site cookie
+    });
     res.cookie("isGoogleAuth", newUser.isGoogleAuth);
     return res.status(201).json({ newUser });
   },

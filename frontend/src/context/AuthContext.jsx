@@ -37,7 +37,6 @@ export const AuthContextProvider = ({ children }) => {
     const fetchData = async () => {
       try {
         const user = await getUserInfo();
-      
           dispatch({
             type: "LOGIN",
             payload: {
@@ -56,34 +55,6 @@ export const AuthContextProvider = ({ children }) => {
     };
     fetchData();
   },[])
-      
-//         let userId = "";
-// console.log(`cookie:${Cookies.get("token")}`);
-//         if (Cookies.get("token")) {
-//           const match = Cookies.get("id").match(/"([^"]+)"/);
-
-//           if (match) {
-//             userId = match[1];
-//           } else {
-//             userId = Cookies.get("id");
-//           }
-
-    //       const existingInitials = await getUserInfo(userId);
-
-    // dispatch({
-    //         type: "LOGIN",
-    //         payload: {
-    //           id: userId,
-    //           token: Cookies.get("token"),
-    //           isGoogleAuth: Cookies.get("isGoogleAuth"),
-    //           firstName: existingInitials && existingInitials.firstName,
-    //           lastName: existingInitials && existingInitials.lastName,
-    //         },
-    //       });
-    //     } else {
-    //       return;
-    //     }
-    //   };
   
       
     console.log('AuthContext state:', state);

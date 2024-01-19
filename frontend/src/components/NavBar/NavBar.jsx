@@ -39,8 +39,8 @@ event.preventDefault();
           window.location.href = "/";
         }
       } else {
-        const res = await axios.post(`${import.meta.env.VITE_PROD_BASE_URL}/logout`, {
-          withCredentials: true,
+        const res = await axios.post(`${import.meta.env.VITE_PROD_BASE_URL}/logout`,null, {
+          withCredentials: true
         });
         if (res.status !== 200) {
           throw new Error("Failed to log out");

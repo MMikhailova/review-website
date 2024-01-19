@@ -64,7 +64,7 @@ router.get(
 router.post("/signin", authControllers.signIn);
 router.get("/getUser", authControllers.getUser);
 router.post("/signup", authControllers.signUp)
-router.get("/logout", authControllers.logout);
+router.post("/logout", authControllers.logout);
 router.post("/auth/logout", function (req, res, next) {
   req.logout(function (err) {
     if (err) {

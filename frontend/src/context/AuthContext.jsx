@@ -37,15 +37,21 @@ export const AuthContextProvider = ({ children }) => {
       const fetchData = async () => {
         try {
           const user = await getUserInfo();
-          dispatch({
-            type: "LOGIN",
-            payload: {
-              id: user?._id,
-              isGoogleAuth: user?.password===false,
-              firstName: user?.firstName,
-              lastName: user?.lastName,
-            },
-          });
+          if (user.status !== 200) {
+            dispatch({
+              type: "LOGOUT"
+            })
+          } else {
+            dispatch({
+              type: "LOGIN",
+              payload: {
+                id: user?._id,
+                isGoogleAuth: user?.password === false,
+                firstName: user?.firstName,
+                lastName: user?.lastName,
+              },
+            });
+          }
         } catch (error) {
           console.log(error);
         }

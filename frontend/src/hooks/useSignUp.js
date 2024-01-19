@@ -2,7 +2,7 @@ import { useState } from "react";
 import { useAuthContext } from "./useAuthContext.js";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
-import Cookies from "js-cookie";
+
 export const useSignUp = () => {
   const [error, setError] = useState(null);
   const [isLoading, setIsLoading] = useState(null);

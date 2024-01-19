@@ -16,17 +16,18 @@ import LogoutIcon from "@mui/icons-material/Logout";
 import { AuthContext } from "../../context/AuthContext.jsx";
 import { useContext, useState } from "react";
 import { Stack } from "@mui/material";
-import { useLogout } from "../../hooks/useLogOut.js"
+// import { useLogout } from "../../hooks/useLogOut.js"
+import { useAuthContext } from "../../hooks/useAuthContext.js";
 
 const settings = ["Your reviews", "Favorites"];
 
 function NavBar() {
-  const { logout } = useLogout();
+  const { dispatch } = useAuthContext();
   const user = useContext(AuthContext);
   const navigate=useNavigate()
   const handleLogout = async () => {
-    if (user.isGoogleAuth) {
-      try {
+    try {
+      if (user.isGoogleAuth) {
         const res = await axios.post(
           `${import.meta.env.VITE_PROD_BASE_URL}/auth/logout`,
           {
@@ -36,13 +37,19 @@ function NavBar() {
         if (res.data === "done") {
           window.location.href = "/";
         }
-        await logout();
+      } else {
+        const res = await axios.post(`${import.meta.env.VITE_PROD_BASE_URL}/logout`, {
+          withCredentials: true,
+        });
+        if (res.status !== 200) {
+          throw new Error("Failed to log out");
+        } else {
+          await dispatch({ type: "LOGOUT" });
+        }
+      }
       } catch (err) {
         console.log(err);
-      }
-    } else {
-         window.location.href = "/";
-      await logout();
+  
     }
   };
   const [anchorElNav, setAnchorElNav] = useState(null);

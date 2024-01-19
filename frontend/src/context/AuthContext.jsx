@@ -33,28 +33,30 @@ export const AuthContextProvider = ({ children }) => {
       lastName: "",
     });
 
-  
-      const fetchData = async () => {
-        try {
-          const user = await getUserInfo();
-          if (user?.status !== 200) {
-           return
-          } else {
-            dispatch({
-              type: "LOGIN",
-              payload: {
-                id: user?._id,
-                isGoogleAuth: user?.password === false,
-                firstName: user?.firstName,
-                lastName: user?.lastName,
-              },
-            });
-          }
-        } catch (error) {
-          console.log(error);
-        }
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const user = await getUserInfo();
+      
+          dispatch({
+            type: "LOGIN",
+            payload: {
+              id: user?._id,
+              isGoogleAuth: user?.password === false,
+              firstName: user?.firstName,
+              lastName: user?.lastName,
+            },
+          });
+        
+      } catch (error) {
+          dispatch({
+            type: "LOGOUT"
+          })
       }
-            fetchData();
+    };
+    fetchData();
+  },[])
+      
 //         let userId = "";
 // console.log(`cookie:${Cookies.get("token")}`);
 //         if (Cookies.get("token")) {

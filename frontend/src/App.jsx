@@ -11,11 +11,11 @@ import Favorites from "./components/Personal/Favorites.jsx";
 //React Hooks
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom'
 import { AuthContext } from "../../frontend/src/context/AuthContext.jsx";
-import { useContext, useEffect } from "react";
+import { useContext} from "react";
 // Styles
 import './GlobalStyles.css'
 import { createTheme, ThemeProvider } from "@mui/material/styles";
-import Cookies from 'js-cookie';
+
 
 
 
@@ -38,32 +38,30 @@ const theme = createTheme({
 });
 
 function App() {
-  const authContext = useContext(AuthContext);
-  // Access state values
-  const {id} = authContext;
+  const user = useContext(AuthContext);
 
   return (
     <ThemeProvider theme={theme}>
       <Router>
         <NavBar />
         <Routes>
-          {id ? (
+          {user.id ? (
             <Route path="/" element={<HomePage />} />
           ) : (
             <Route path="/" element={<PublicPage />} />
           )}
           <Route
             path="/user/reviews"
-            element={id ? <Reviews /> : <LoginPage />}
+            element={user.id ? <Reviews /> : <LoginPage />}
           />
           <Route
             path="/user/favorites"
-            element={id ? <Favorites /> : <LoginPage />}
+            element={user.id ? <Favorites /> : <LoginPage />}
           />
 
           <Route
             path="/book/:bookId"
-            element={id? <BookPage /> : <LoginPage />}
+            element={user.id? <BookPage /> : <LoginPage />}
           />
           <Route path="/signup" element={<SignUp />} />
           <Route path="/login" element={<LoginPage />} />

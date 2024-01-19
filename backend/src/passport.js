@@ -23,37 +23,36 @@ passport.use(
     {
       clientID: process.env["GOOGLE_CLIENT_ID"],
       clientSecret: process.env["GOOGLE_CLIENT_SECRET"],
-      callbackURL: "/auth/google/callback",
+      callbackURL: "https://book-reviews-41q7.onrender.com/auth/google/callback",
       scope: ["profile", "email"],
-      // passReqToCallback: true
+      passReqToCallback: true,
     },
-           async function (accessToken, refreshToken, profile, cb) {
-             //successful login
-             try {
-               const userExist = await User.findOne({
-                 email: profile.emails[0].value
-    
-               });
-    
-              const userInfo= await getUserData(accessToken);
-               //Check if email exist
-               if (!userExist) {
-                 //Create a User
-                 const newUser = await User.create({
-                   email: profile.emails[0].value,
-                   firstName: userInfo.given_name,
-                   lastName: userInfo.family_name
-                 });
+    async function (accessToken, refreshToken, profile, cb) {
+      //successful login
+      try {
+        const userExist = await User.findOne({
+          email: profile.emails[0].value,
+        });
 
-                 return cb(null, newUser);
-               }
-               return cb(null, userExist);
-             } catch (error) {
-               return cb(error, null);
-             }
-           }
-         )
-       );
+        const userInfo = await getUserData(accessToken);
+        //Check if email exist
+        if (!userExist) {
+          //Create a User
+          const newUser = await User.create({
+            email: profile.emails[0].value,
+            firstName: userInfo.given_name,
+            lastName: userInfo.family_name,
+          });
+
+          return cb(null, newUser);
+        }
+        return cb(null, userExist);
+      } catch (error) {
+        return cb(error, null);
+      }
+    }
+  )
+);
    
 
 passport.serializeUser((user, done) => {

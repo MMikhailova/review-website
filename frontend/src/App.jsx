@@ -40,31 +40,30 @@ const theme = createTheme({
 function App() {
   const authContext = useContext(AuthContext);
   // Access state values
-  const { token } = authContext;
-
+  const { id} = authContext;
 
   return (
     <ThemeProvider theme={theme}>
       <Router>
         <NavBar />
         <Routes>
-          {token ? (
+          {id ? (
             <Route path="/" element={<HomePage />} />
           ) : (
             <Route path="/" element={<PublicPage />} />
           )}
           <Route
             path="/user/reviews"
-            element={token ? <Reviews /> : <LoginPage />}
+            element={id ? <Reviews /> : <LoginPage />}
           />
           <Route
             path="/user/favorites"
-            element={token ? <Favorites /> : <LoginPage />}
+            element={id ? <Favorites /> : <LoginPage />}
           />
 
           <Route
             path="/book/:bookId"
-            element={token ? <BookPage /> : <LoginPage />}
+            element={id? <BookPage /> : <LoginPage />}
           />
           <Route path="/signup" element={<SignUp />} />
           <Route path="/login" element={<LoginPage />} />

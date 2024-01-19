@@ -29,7 +29,6 @@ export const useSignUp = () => {
           type: "LOGIN",
           payload: {
             id: user.id,
-            token: user.token,
             isGoogleAuth: user.isGoogleAuth,
             firstName: user.firstName,
             lastName: user.lastName
@@ -52,7 +51,6 @@ export const useSignUp = () => {
         type: "LOGIN",
         payload: {
           id: user.id,
-          token: user.token,
           isGoogleAuth: user.isGoogleAuth,
           firstName: user.firstName,
           lastName:user.lastName
@@ -87,7 +85,6 @@ export const useSignUp = () => {
           type: "LOGIN",
           payload: {
             id: user.id,
-            token: user.token,
             isGoogleAuth: user.isGoogleAuth,
             firstName: user.firstName,
             lastName: user.lastName

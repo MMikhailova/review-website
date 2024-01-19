@@ -1,16 +1,24 @@
 import { useAuthContext } from "./useAuthContext.js"
 import Cookies from "js-cookie";
-
+import axios from 'axios'
  export const useLogout = () => {
 
  const { dispatch } = useAuthContext();
     //remove user from storage
-   const logout = async () => {
-      Cookies.remove("id");
-      Cookies.remove("token");
-      Cookies.remove("isGoogleAuth");
-           await dispatch({ type: "LOGOUT" });
+    const logout = async () => {
+       try {
+          const res = await axios.get(`${import.meta.env.VITE_PROD_BASE_URL}/logout`, {
+             withCredentials: true
+          });
+          if (res.status !== 200) {
+             throw new Error('Failed to log out');
+          } else {
+             await dispatch({ type: "LOGOUT" });
+          }
+       } catch (err) {
+          console.log(err)
+           
+       }
     }
-    //dispatch logout
  return {logout}
 }

@@ -28,7 +28,6 @@ router.get(
     const userData = {
       id: req.user._id,
       isGoogleAuth: true,
-      token: token,
       firstName: req.user.firstName,
       lastName: req.user.lastName,
     };
@@ -63,8 +62,9 @@ router.get(
 );
 
 router.post("/signin", authControllers.signIn);
-router.get("/getUser/:id", authControllers.getUser);
+router.get("/getUser", authControllers.getUser);
 router.post("/signup", authControllers.signUp)
+router.get("/logout", authControllers.logout);
 router.post("/auth/logout", function (req, res, next) {
   req.logout(function (err) {
     if (err) {

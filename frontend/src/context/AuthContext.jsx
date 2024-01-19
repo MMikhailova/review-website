@@ -1,5 +1,4 @@
 import { createContext, useEffect, useReducer } from 'react'
-import Cookies from "js-cookie";
 import getUserInfo from '../api/getUserInfo.js';
 
 export const AuthContext = createContext()
@@ -10,16 +9,13 @@ export const authReducer = (state, action) => {
      
             return {
               id: action.payload.id,
-              token: action.payload.token,
               isGoogleAuth: action.payload.isGoogleAuth,
               firstName: action.payload.firstName,
-              lastName: action.payload.lastName,
-              loading: false,
+              lastName: action.payload.lastName
             };
         case 'LOGOUT':
             return {
                 id: null,
-                token:null,
                 isGoogleAuth: false,
                 firstName: '',
                 lastName: ''
@@ -32,7 +28,6 @@ export const authReducer = (state, action) => {
 export const AuthContextProvider = ({ children }) => {
     const [state, dispatch] = useReducer(authReducer, {
       id: null,
-      token: null,
       isGoogleAuth: false,
       firstName: "",
       lastName: "",
@@ -40,35 +35,51 @@ export const AuthContextProvider = ({ children }) => {
 
     useEffect(() => {
       const fetchData = async () => {
-        let userId = "";
-console.log(Cookies.get("token"));
-        if (Cookies.get("token")) {
-          const match = Cookies.get("id").match(/"([^"]+)"/);
-
-          if (match) {
-            userId = match[1];
-          } else {
-            userId = Cookies.get("id");
-          }
-
-          const existingInitials = await getUserInfo(userId);
-
-         return  dispatch({
+        try {
+          const user = await getUserInfo();
+          dispatch({
             type: "LOGIN",
             payload: {
-              id: userId,
-              token: Cookies.get("token"),
-              isGoogleAuth: Cookies.get("isGoogleAuth"),
-              firstName: existingInitials && existingInitials.firstName,
-              lastName: existingInitials && existingInitials.lastName,
+              id: user._id,
+              isGoogleAuth: user?.password===false,
+              firstName: user?.firstName,
+              lastName: user?.lastName,
             },
           });
-        } else {
-          return;
+        } catch (error) {
+          console.log(error);
         }
-      };
-      fetchData();
+      }
+            fetchData();
     }, []);
+//         let userId = "";
+// console.log(`cookie:${Cookies.get("token")}`);
+//         if (Cookies.get("token")) {
+//           const match = Cookies.get("id").match(/"([^"]+)"/);
+
+//           if (match) {
+//             userId = match[1];
+//           } else {
+//             userId = Cookies.get("id");
+//           }
+
+    //       const existingInitials = await getUserInfo(userId);
+
+    // dispatch({
+    //         type: "LOGIN",
+    //         payload: {
+    //           id: userId,
+    //           token: Cookies.get("token"),
+    //           isGoogleAuth: Cookies.get("isGoogleAuth"),
+    //           firstName: existingInitials && existingInitials.firstName,
+    //           lastName: existingInitials && existingInitials.lastName,
+    //         },
+    //       });
+    //     } else {
+    //       return;
+    //     }
+    //   };
+  
       
     console.log('AuthContext state:', state);
     return <AuthContext.Provider value={{ ...state, dispatch }}>

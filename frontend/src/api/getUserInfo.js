@@ -1,12 +1,10 @@
 import axios from "axios";
 
-const getUserInfo = async (id) => {
-console.log(id);
-  if (id) {
+const getUserInfo = async () => {
 
     try {
       const res = await axios.get(
-        `${import.meta.env.VITE_PROD_BASE_URL}/getUser/${id}`,
+        `${import.meta.env.VITE_PROD_BASE_URL}/getUser`,
         {
           withCredentials: true,
         }
@@ -15,14 +13,14 @@ console.log(id);
       if (res.status !== 200) {
         throw new Error(`Failed to fetch data with status: ${res.status}`);
       } else {
+        console.log(res.data.existingUser);
         return res.data.existingUser
 
       }
     } catch (err) {
       console.log(err);
     }
-  } else {
-    return 
-  }
+
+
 };
 export default getUserInfo;

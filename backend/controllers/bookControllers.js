@@ -49,6 +49,7 @@ const bookControllers = {
     });
   },
   getBooks: async (req, res) => {
+
     const result = await Book.find();
     return res.status(200).json({ result: result });
   },
@@ -72,14 +73,12 @@ const bookControllers = {
         new: true,
       }
     );
-    console.log(updatedBook);
     res.status(200).json({
       book: updatedBook,
     });
   },
   getBookReviews: async (req, res) => {
     const { id } = req.params;
-    console.log(id);
     const books = await Book.find({ "reviews.reviewer": id })
       const reviews = books.flatMap((book) =>
         book.reviews

@@ -18,11 +18,10 @@ const BookPage = () => {
   const [loading, setLoading] = useState("");
   const [isForm, setForm] = useState(false);
   const [book, setBook] = useState([]);
-
+  // Get a specific part of the URL, e.g., pathname
   const id = window.location.pathname.split("/").pop();
 
   useEffect(() => {
-    // Get a specific part of the URL, e.g., pathname
     getBook(id, setBook, setError, setLoading);
   }, [id, isForm]);
 
@@ -104,11 +103,13 @@ const BookPage = () => {
                   >
                     <Stack direction={"row"}>
                       <Avatar>
-                        {review.reviewer?review.reviewer.lastName.slice(0, 1):"U"}
+                        {review.reviewer
+                          ? review.reviewer.lastName.slice(0, 1)
+                          : "U"}
                       </Avatar>
                       <Typography variant="subtitle1">
-                        {review.reviewer?review.reviewer.firstName:"User"}{" "}
-                        {review.reviewer&& review.reviewer.lastName}
+                        {review.reviewer ? review.reviewer.firstName : "User"}{" "}
+                        {review.reviewer && review.reviewer.lastName}
                       </Typography>
                     </Stack>
                     <Rating

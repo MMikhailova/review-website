@@ -25,11 +25,10 @@ function NavBar() {
   const user = useContext(AuthContext);
   const navigate=useNavigate()
   const handleLogout = async () => {
-    const isGoogleAuth = Cookies.get("isGoogleAuth") === "true";
-    if (isGoogleAuth) {
+    if (user.isGoogleAuth) {
       try {
         const res = await axios.post(
-          `${import.meta.env.VITE_PROD_BASE_URL}auth/logout`,
+          `${import.meta.env.VITE_PROD_BASE_URL}/auth/logout`,
           {
             withCredentials: true,
           }
@@ -114,7 +113,7 @@ function NavBar() {
             </Menu>
           </Box>
 
-          {user.token && <Stack
+          {user.id && <Stack
             direction={"row"}
             sx={{ display: "flex", alignItems: "center" }}
           >

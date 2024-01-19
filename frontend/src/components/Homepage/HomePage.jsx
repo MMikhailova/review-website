@@ -27,7 +27,7 @@ const HomePage = () => {
 
   useEffect(() => {
     async function fetchData() {
-        const data = user.id && (await getUserInfo(user.id));
+        const data = user.id && (await getUserInfo());
          setFavoriteBooks(data.favorites);
       await getBooks(setBooks, setError, setLoading);
     

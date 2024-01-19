@@ -36,20 +36,17 @@ router.get(
     res.cookie("id", userData.id, {
       secure: true,
       sameSite: "none", // For cross-site cookies
-      httpOnly: true, // Improve security by preventing client-side access
-      domain: ".vercel.app", // Allow subdomains if needed
+      httpOnly: true // Improve security by preventing client-side access
     });
     res.cookie("token", userData.token, {
       secure: true,
       sameSite: "none", // For cross-site cookies
-      httpOnly: true, // Improve security by preventing client-side access
-      domain: ".vercel.app", // Allow subdomains if needed
+      httpOnly: true // Improve security by preventing client-side access
     });
     res.cookie("isGoogleAuth", userData.isGoogleAuth, {
       secure: true,
       sameSite: "none", // For cross-site cookies
-      httpOnly: true, // Improve security by preventing client-side access
-      domain: ".vercel.app", // Allow subdomains if needed
+      httpOnly: true // Improve security by preventing client-side access
     });
     // Send a postMessage to the main window with the user data
     res.send(`

@@ -33,8 +33,8 @@ const NewBookForm = ({ bookId,setForm }) => {
     
   const handleNewReview = async (event) => {
     event.preventDefault();
-    addReview(bookId, review, setError, setLoading);
-    setForm(false)
+    await addReview(bookId, review, setError, setLoading);
+    await setForm(false)
   };
 
   return (

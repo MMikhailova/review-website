@@ -40,7 +40,7 @@ export const AuthContextProvider = ({ children }) => {
           dispatch({
             type: "LOGIN",
             payload: {
-              id: user._id,
+              id: user?._id,
               isGoogleAuth: user?.password===false,
               firstName: user?.firstName,
               lastName: user?.lastName,

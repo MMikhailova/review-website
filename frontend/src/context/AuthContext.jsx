@@ -33,7 +33,7 @@ export const AuthContextProvider = ({ children }) => {
       lastName: "",
     });
 
-    useEffect(() => {
+  
       const fetchData = async () => {
         try {
           const user = await getUserInfo();
@@ -57,7 +57,6 @@ export const AuthContextProvider = ({ children }) => {
         }
       }
             fetchData();
-    }, []);
 //         let userId = "";
 // console.log(`cookie:${Cookies.get("token")}`);
 //         if (Cookies.get("token")) {

@@ -58,9 +58,11 @@ const authControllers = {
     res.cookie("token", userData.token, {
       secure: true, //https
       sameSite: "None",
-      domain: ".onrender.com",
+      // domain: ".onrender.com",
       maxAge: 7 * 24 * 60 * 60 * 1000, //cross-site cookie
     });
+    res.set('Access-Control-Allow-Origin', req.headers.origin)
+    res.set('Access-Control-Allow-Credentials','true')
     res.cookie("isGoogleAuth", userData.isGoogleAuth, {
       secure: true, //https
       sameSite: "None",

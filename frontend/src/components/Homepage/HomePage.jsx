@@ -33,7 +33,7 @@ const HomePage = () => {
     
     }
     fetchData();
-  }, []);
+  }, [user.id]);
 
   return (
     <>{error && <ErrorAlert/>}

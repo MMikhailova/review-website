@@ -20,8 +20,8 @@ const app = express();
 //cross - origin configuration
 app.use(
   cors({
-    // origin:"http://localhost:5173",
-    origin: "https://review-website-bice.vercel.app",
+    origin:"http://localhost:5173",
+    // origin: "https://review-website-bice.vercel.app",
     credentials: true,
   })
 );

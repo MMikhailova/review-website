@@ -56,9 +56,10 @@ const authControllers = {
       maxAge: 7 * 24 * 60 * 60 * 1000, //cookie expiry: set to match rT
     });
     res.cookie("token", userData.token, {
+      httpOnly:false,
       secure: true, //https
       sameSite: "None",
-      // domain: ".onrender.com",
+      domain: ".vercel.com",
       maxAge: 7 * 24 * 60 * 60 * 1000, //cross-site cookie
     });
     res.set('Access-Control-Allow-Origin', req.headers.origin)

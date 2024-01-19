@@ -25,8 +25,7 @@ function NavBar() {
   const { dispatch } = useAuthContext();
   const user = useContext(AuthContext);
   const navigate=useNavigate()
-  const handleLogout = async (event) => {
-event.preventDefault();
+  const handleLogout = async () => {
     try {
       if (user.isGoogleAuth) {
         const res = await axios.post(

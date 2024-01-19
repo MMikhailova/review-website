@@ -52,16 +52,19 @@ const authControllers = {
     res.cookie("id", userData.id, {
       secure: true, //https
       sameSite: "None", //cross-site cookie
+      domain:".onrender.com",
       maxAge: 7 * 24 * 60 * 60 * 1000, //cookie expiry: set to match rT
     });
     res.cookie("token", userData.token, {
       secure: true, //https
       sameSite: "None",
+      domain: ".onrender.com",
       maxAge: 7 * 24 * 60 * 60 * 1000, //cross-site cookie
     });
     res.cookie("isGoogleAuth", userData.isGoogleAuth, {
       secure: true, //https
       sameSite: "None",
+      domain: ".onrender.com",
       maxAge: 7 * 24 * 60 * 60 * 1000, //cross-site cookie
     });
     return res.status(200).json({ userData });

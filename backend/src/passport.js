@@ -25,7 +25,7 @@ passport.use(
       clientSecret: process.env["GOOGLE_CLIENT_SECRET"],
       callbackURL: "https://book-reviews-41q7.onrender.com/auth/google/callback",
       scope: ["profile", "email"],
-      passReqToCallback: true,
+      // passReqToCallback: true,
     },
     async function (accessToken, refreshToken, profile, cb) {
       //successful login

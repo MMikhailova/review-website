@@ -24,7 +24,6 @@ export const useSignUp = () => {
       if (res.data) {
         setIsLoading(false);
         const user = res.data.userData;
-  
         //update the auth state
         dispatch({
           type: "LOGIN",

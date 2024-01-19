@@ -24,7 +24,7 @@ const BookPage = () => {
   useEffect(() => {
     // Get a specific part of the URL, e.g., pathname
     getBook(id, setBook, setError, setLoading);
-  }, [id, book]);
+  }, [id, isForm]);
 
   return (
     <>

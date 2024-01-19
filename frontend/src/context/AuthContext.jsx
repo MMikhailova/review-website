@@ -41,6 +41,7 @@ export const AuthContextProvider = ({ children }) => {
     useEffect(() => {
       const fetchData = async () => {
         let userId = "";
+
         if (Cookies.get("token")) {
           const match = Cookies.get("id").match(/"([^"]+)"/);
 
@@ -52,7 +53,7 @@ export const AuthContextProvider = ({ children }) => {
 
           const existingInitials = await getUserInfo(userId);
 
-          dispatch({
+         return  dispatch({
             type: "LOGIN",
             payload: {
               id: userId,

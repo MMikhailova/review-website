@@ -11,10 +11,11 @@ import Favorites from "./components/Personal/Favorites.jsx";
 //React Hooks
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom'
 import { AuthContext } from "../../frontend/src/context/AuthContext.jsx";
-import { useContext } from "react";
+import { useContext, useEffect } from "react";
 // Styles
 import './GlobalStyles.css'
 import { createTheme, ThemeProvider } from "@mui/material/styles";
+import Cookies from 'js-cookie';
 
 
 
@@ -39,7 +40,8 @@ const theme = createTheme({
 function App() {
   const authContext = useContext(AuthContext);
   // Access state values
-  const {token} = authContext;
+  const { token } = authContext;
+
 
   return (
     <ThemeProvider theme={theme}>

@@ -50,22 +50,19 @@ const authControllers = {
     };
     // Set cookies
     res.cookie("id", userData.id, {
-      httpOnly: true, //accessible only by web server
       secure: true, //https
       sameSite: "None", //cross-site cookie
-      maxAge: 7 * 24 * 60 * 60 * 1000 //cookie expiry: set to match rT
+      maxAge: 7 * 24 * 60 * 60 * 1000, //cookie expiry: set to match rT
     });
     res.cookie("token", userData.token, {
-      httpOnly: true, //accessible only by web server
       secure: true, //https
       sameSite: "None",
-      maxAge: 7 * 24 * 60 * 60 * 1000//cross-site cookie
+      maxAge: 7 * 24 * 60 * 60 * 1000, //cross-site cookie
     });
     res.cookie("isGoogleAuth", userData.isGoogleAuth, {
-      httpOnly: true, //accessible only by web server
       secure: true, //https
       sameSite: "None",
-      maxAge: 7 * 24 * 60 * 60 * 1000 //cross-site cookie
+      maxAge: 7 * 24 * 60 * 60 * 1000, //cross-site cookie
     });
     return res.status(200).json({ userData });
   },

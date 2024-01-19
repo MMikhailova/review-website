@@ -41,7 +41,7 @@ export const AuthContextProvider = ({ children }) => {
     useEffect(() => {
       const fetchData = async () => {
         let userId = "";
-
+console.log(Cookies.get("token"));
         if (Cookies.get("token")) {
           const match = Cookies.get("id").match(/"([^"]+)"/);
 

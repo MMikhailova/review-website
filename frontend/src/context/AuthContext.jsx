@@ -37,10 +37,8 @@ export const AuthContextProvider = ({ children }) => {
       const fetchData = async () => {
         try {
           const user = await getUserInfo();
-          if (user.status !== 200) {
-            dispatch({
-              type: "LOGOUT"
-            })
+          if (user?.status !== 200) {
+           return
           } else {
             dispatch({
               type: "LOGIN",

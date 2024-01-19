@@ -40,7 +40,7 @@ const theme = createTheme({
 function App() {
   const authContext = useContext(AuthContext);
   // Access state values
-  const { id} = authContext;
+  const {id} = authContext;
 
   return (
     <ThemeProvider theme={theme}>

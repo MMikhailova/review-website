@@ -129,9 +129,13 @@ console.log(email, password, confirmPassword, firstName, lastName);
     return res.status(201).json({ newUser });
   },
   logout: (req, res) => {
-     res.clearCookie('token');
-    res.clearCookie('id');
-    res.clearCookie('isGoogleAuth');
+     res.clearCookie('token',{ httpOnly: true, sameSite: 'None', secure: true });
+    res.clearCookie("id", { httpOnly: true, sameSite: "None", secure: true });
+    res.clearCookie("isGoogleAuth", {
+      httpOnly: true,
+      sameSite: "None",
+      secure: true,
+    });
         return res
             .status(200)
             .json({  message: 'User logged out successfully' });

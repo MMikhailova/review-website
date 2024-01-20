@@ -20,7 +20,6 @@ const BookPage = () => {
   const [book, setBook] = useState([]);
   // Get a specific part of the URL, e.g., pathname
   const id = window.location.pathname.split("/").pop();
-
   useEffect(() => {
     getBook(id, setBook, setError, setLoading);
   }, [id, isForm]);

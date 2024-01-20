@@ -2,17 +2,19 @@ import {
   Avatar,
   Box,
   Button,
-  Rating,
+  FormControlLabel,
   TextField,
   Typography,
 } from "@mui/material";
+import Rating from "@mui/material/Rating";
+import StarIcon from "@mui/icons-material/Star";
 import { useContext, useState } from "react";
 import { AuthContext } from "../../context/AuthContext";
 import addReview from "../../api/addReview";
 
 const NewBookForm = ({ bookId,setForm }) => {
    const [error, setError] = useState("");
-   const [loading, setLoading] = useState("");
+  const [loading, setLoading] = useState("");
     const user = useContext(AuthContext);
  
   const [review, setReview] = useState({
@@ -20,7 +22,7 @@ const NewBookForm = ({ bookId,setForm }) => {
     text: "",
     rating: 0,
   });
-    const handleChange = (e) => {
+  const handleChange = (e) => {
        const value =
            e.target.name === "rating" ? Number(e.target.value) : e.target.value;
        
@@ -28,13 +30,12 @@ const NewBookForm = ({ bookId,setForm }) => {
       ...review,
       [e.target.name]: value,
     });
-
     };
     
   const handleNewReview = async (event) => {
-    event.preventDefault();
+  event.preventDefault();
     await addReview(bookId, review, setError, setLoading);
-    await setForm(false)
+   setForm(false)
   };
 
   return (
@@ -50,20 +51,36 @@ const NewBookForm = ({ bookId,setForm }) => {
         p: 2,
       }}
     >
-      <Avatar>{user.firstName.slice(0,1)}</Avatar>
-      <Typography
-        required
-        value={review.reviewer}
-        onChange={handleChange}
-      >{user.firstName} {user.lastName}</Typography>
-      <Rating
-        label="Rating"
-        type="number"
-        id="rating"
-        name="rating"
-        value={review.rating || 0}
-        onChange={handleChange}
-      ></Rating>
+      <Avatar>{user.firstName.slice(0, 1)}</Avatar>
+      <Typography required value={review.reviewer} onChange={handleChange}>
+        {user.firstName} {user.lastName}
+      </Typography>
+      <FormControlLabel
+        control={
+          <>
+            <input
+              name="rating"
+              type="number"
+              value={review.rating}
+              hidden
+              readOnly
+            />
+            <Rating
+              name="rating"
+              value={review.rating}
+              precision={1}
+              onChange={(e, value) => {
+                setReview({
+                  ...review,
+                   [e.target.name]: value,
+                });
+              }}
+              icon={<StarIcon fontSize="inherit" />}
+            />
+          </>
+        }
+      />
+
       <TextField
         required
         fullWidth

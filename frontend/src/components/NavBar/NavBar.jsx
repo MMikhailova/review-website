@@ -44,7 +44,7 @@ function NavBar() {
         if (res.status !== 200) {
           throw new Error("Failed to log out");
         } else {
-          await dispatch({ type: "LOGOUT" });
+        dispatch({ type: "LOGOUT" });
         }
       }
       } catch (err) {

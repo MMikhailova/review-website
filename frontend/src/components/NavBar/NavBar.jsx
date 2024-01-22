@@ -29,13 +29,13 @@ function NavBar() {
     try {
       if (user.isGoogleAuth) {
         const res = await axios.post(
-          `${import.meta.env.VITE_PROD_BASE_URL}/auth/logout`,
+          `${import.meta.env.VITE_PROD_BASE_URL}/auth/logout`,null,
           {
             withCredentials: true,
           }
         );
         if (res.data === "done") {
-          window.location.href = "/";
+      dispatch({ type: "LOGOUT" });
         }
       } else {
         const res = await axios.post(`${import.meta.env.VITE_PROD_BASE_URL}/logout`,null, {

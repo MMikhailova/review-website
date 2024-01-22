@@ -14,28 +14,32 @@ import { AuthContext } from "../../frontend/src/context/AuthContext.jsx";
 import { useContext} from "react";
 // Styles
 import './GlobalStyles.css'
-import { createTheme, ThemeProvider } from "@mui/material/styles";
+import {
+  createTheme,
+  ThemeProvider,
+  responsiveFontSizes,
+} from "@mui/material/styles";
+
+let theme = createTheme(
+  {
+    typography: {
+      h1: {
+        fontFamily: "'Dancing Script', cursive",
+        color: "#E6BE7F",
+      },
+      h5: {
+        fontFamily: "'Montserrat', sans-serif",
+        color: "white",
+      },
+      h2: {
+        fontFamily: "'Dancing Script', cursive",
+        color: "black",
+      },
+    }
+  })
+theme = responsiveFontSizes(theme);
 
 
-
-
-const theme = createTheme({
-  typography: {
-    h1: {
-      fontFamily: "'Dancing Script', cursive",
-      color: "#E6BE7F",
-      fontSize: "80px",
-    },
-    h5: {
-      fontFamily: "'Montserrat', sans-serif",
-      color: "white",
-    },
-    h2: {
-      fontFamily: "'Dancing Script', cursive",
-      color: "black",
-    },
-  },
-});
 
 function App() {
   const user = useContext(AuthContext);

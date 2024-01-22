@@ -68,9 +68,21 @@ const navigate = useNavigate()
   };
 
   return (
-    <Card sx={{ width: 600, height: 400, display: "flex" }}>
+    <Card
+      sx={{
+        width: 600,
+        height: {xs:"fit-content",md:400},
+        display: "flex",
+        flexDirection: { xs: "column", md: "row" },
+        py: { xs: "1.5rem", md: 0 },
+        textAlign:"justify"
+      }}
+    >
       <CardMedia
-        sx={{ width: "40%" }}
+        sx={{
+          width: { xs: "35%", md: "40%" },
+          alignSelf: { xs: "center", md: "normal" },
+        }}
         component="img"
         image={book.url}
         alt="Book Cover"
@@ -118,9 +130,9 @@ const navigate = useNavigate()
           </Collapse>
         </CardContent>
 
-        <CardActions disableSpacing>
+        <CardActions disableSpacing p={0}m={0}>
           <Tooltip title="Add to favorites" arrow>
-            <IconButton aria-label="add to favorites" onClick={ handleFavorites }>
+            <IconButton aria-label="add to favorites" onClick={handleFavorites}>
               {isfavorite ? <FavoriteIcon /> : <FavoriteBorderOutlinedIcon />}
             </IconButton>
           </Tooltip>

@@ -33,9 +33,10 @@ const book = new mongoose.Schema({
         min: 1,
         max: 5,
         required: true,
-      },
+      }
     },
   ],
+  
 });
 // Define a virtual property for the average rating
 book.virtual('rating').get(function () {

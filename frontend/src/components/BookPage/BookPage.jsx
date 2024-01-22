@@ -35,28 +35,29 @@ const BookPage = () => {
           display: "flex",
           flexDirection: "column",
           p: 3,
+          alignItems: "center",
         }}
       >
         <Box
           sx={{
             flexGrow: 1,
             backgroundColor: "#E9E1B9",
-            width: "60vw",
-            margin: "auto",
+            width: { xs: "100vw", md: "60vw" },
+            borderRadius:"4px"
           }}
         >
-          <Grid container spacing={2} sx={{ p: 3 }}>
+          <Grid container spacing={3} sx={{ p: 3 }}>
             <Grid
               item
-              xs={4}
+              xs={8}
+              md={4}
               sx={{
                 display: "flex",
                 flexDirection: "column",
-                justifyContent: "stretch",
-                gap: 1,
+               margin:{xs:"auto",md:0}
               }}
             >
-              <img style={{ width: "100%" }} src={book.url} />
+              <img src={book.url} />
               <Button
                 sx={{
                   backgroundColor: "lightgray",
@@ -71,7 +72,7 @@ const BookPage = () => {
                 + LEAVE REVIEW
               </Button>
             </Grid>
-            <Grid item xs={8} sx={{ textAlign: "center" }}>
+            <Grid item xs={12} md={8} sx={{ textAlign: "center" }}>
               <Typography variant="h2">{book.title}</Typography>
               <Typography variant="h4">{book.author}</Typography>
               <Rating
@@ -79,7 +80,9 @@ const BookPage = () => {
                 value={book.rating ? book.rating : 0}
                 readOnly
               ></Rating>
-              <Typography variant="subtitle1">{book.description}</Typography>
+              <Typography sx={{ textAlign: "justify" }} variant="subtitle1">
+                {book.description}
+              </Typography>
             </Grid>
 
             <Grid
@@ -90,35 +93,39 @@ const BookPage = () => {
               {isForm && <NewBookForm bookId={id} setForm={setForm} />}
               {book.reviews &&
                 book.reviews.length > 0 &&
-                book.reviews.map((review) => (
-                  <Box
-                    key={review._id}
-                    sx={{
-                      display: "flex",
-                      backgroundColor: "white",
-                      flexDirection: "column",
-                      p: 1,
-                    }}
-                  >
-                    <Stack direction={"row"}>
-                      <Avatar>
-                        {review.reviewer
-                          ? review.reviewer.lastName.slice(0, 1)
-                          : "U"}
-                      </Avatar>
-                      <Typography variant="subtitle1">
-                        {review.reviewer ? review.reviewer.firstName : "User"}{" "}
-                        {review.reviewer && review.reviewer.lastName}
-                      </Typography>
-                    </Stack>
-                    <Rating
-                      name="read-only"
-                      value={review.rating && review.rating}
-                      readOnly
-                    />
-                    <Typography>{review.text && review.text}</Typography>
-                  </Box>
-                ))}
+                book.reviews
+                  .slice()
+                  .reverse()
+                  .map((review) => (
+                    <Box
+                      key={review._id}
+                      sx={{
+                        display: "flex",
+                        backgroundColor: "white",
+                        flexDirection: "column",
+                        borderRadius:"4px",
+                        p: 1,
+                      }}
+                    >
+                      <Stack direction={"row"}>
+                        <Avatar>
+                          {review.reviewer
+                            ? review.reviewer.lastName.slice(0, 1)
+                            : "U"}
+                        </Avatar>
+                        <Typography variant="subtitle1">
+                          {review.reviewer ? review.reviewer.firstName : "User"}{" "}
+                          {review.reviewer && review.reviewer.lastName}
+                        </Typography>
+                      </Stack>
+                      <Rating
+                        name="read-only"
+                        value={review.rating && review.rating}
+                        readOnly
+                      />
+                      <Typography>{review.text && review.text}</Typography>
+                    </Box>
+                  ))}
             </Grid>
           </Grid>
         </Box>

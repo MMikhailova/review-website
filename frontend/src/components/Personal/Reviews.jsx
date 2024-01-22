@@ -37,7 +37,7 @@ const Reviews = () => {
             xs={10}
             md={8}
             sx={{
-              borderRadius: "15px",
+              borderRadius: "4px",
               display: "flex",
               flexDirection: { xs: "column", md: "row" },
               textAlign: "justify",
@@ -66,14 +66,14 @@ const Reviews = () => {
               gap={1}
               direction={"column"}
             >
-              <Typography variant="h6">{review.title}</Typography>
-              <Typography variant="h7">{review.author}</Typography>
+              <Typography variant="h2">{review.title}</Typography>
+              <Typography variant="h4">{review.author}</Typography>
               <Rating
                 name="read-only"
                 value={review.rating ? review.rating : 0}
                 readOnly
               ></Rating>
-              <Typography variant="body">{review.text}</Typography>
+              <Typography variant="subtitle1">{review.text}</Typography>
             </Stack>
           </Grid>
         ))

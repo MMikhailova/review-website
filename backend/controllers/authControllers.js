@@ -1,4 +1,3 @@
-import axios from "axios";
 import bcrypt from "bcrypt";
 import jwt from "jsonwebtoken";
 import User from "../model/user.js";
@@ -6,17 +5,14 @@ import User from "../model/user.js";
 const authControllers = {
   getUser: async (req, res) => {
     const id = req.cookies.id;
-    console.log(id);
-    try {
       const existingUser = await User.findOne({ _id: id });
       if (!existingUser) {
         return res.status(400).json({ message: "User don't exist!" });
-      }
-    console.log(existingUser);
-      return res.status(200).json({ existingUser });
-    } catch (error) {
-      console.log(error);
-    }
+      } else {
+        console.log(existingUser);
+      return res.status(200).json({ existingUser });}
+    
+   
   },
   signIn: async (req, res) => {
     //normal form
@@ -67,7 +63,6 @@ const authControllers = {
       httpOnly: true, //accessible only by web server
       secure: true, //https
       sameSite: "None",
-      domain: ".onrender.com",
       maxAge: 7 * 24 * 60 * 60 * 1000, //cross-site cookie
     });
     return res.status(200).json({ userData });

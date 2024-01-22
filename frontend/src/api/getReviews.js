@@ -1,6 +1,6 @@
 import axios from 'axios'
 
-const getReviews = async (id,  setError, setLoading) => {
+const getReviews = async (id, setError, setLoading) => {
   try {
     const res = await axios.get(
       `${import.meta.env.VITE_PROD_BASE_URL}/books/get-reviews/${id}`,

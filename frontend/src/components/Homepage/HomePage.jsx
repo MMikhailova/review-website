@@ -23,17 +23,16 @@ const HomePage = () => {
   const [loading, setLoading] = useState("");
   const [books, setBooks] = useState([]);
   
-  const user = useContext(AuthContext);
 
   useEffect(() => {
     async function fetchData() {
-        const data = user.id && (await getUserInfo());
-         setFavoriteBooks(data.favorites);
+        const data =  await getUserInfo()
+         setFavoriteBooks(data?.favorites);
       await getBooks(setBooks, setError, setLoading);
     
     }
     fetchData();
-  }, [user.id]);
+  }, []);
 
   return (
     <>{error && <ErrorAlert/>}

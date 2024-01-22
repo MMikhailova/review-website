@@ -2,7 +2,6 @@ import axios from "axios";
 
 const getUserInfo = async () => {
 
-    try {
       const res = await axios.get(
         `${import.meta.env.VITE_PROD_BASE_URL}/getUser`,
         {
@@ -17,10 +16,5 @@ const getUserInfo = async () => {
         return res.data.existingUser
 
       }
-    } catch (err) {
-      console.log(err);
-    }
-
-
 };
 export default getUserInfo;

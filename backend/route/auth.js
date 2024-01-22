@@ -34,19 +34,22 @@ router.get(
 
     // Set cookies
     res.cookie("id", userData.id, {
-      secure: true,
-      sameSite: "none", // For cross-site cookies
-      httpOnly: true // Improve security by preventing client-side access
+      httpOnly: true, //accessible only by web server
+      secure: true, //https
+      sameSite: "None",
+      maxAge: 7 * 24 * 60 * 60 * 1000, //cross-site cookie
     });
-    res.cookie("token", userData.token, {
-      secure: true,
-      sameSite: "none", // For cross-site cookies
-      httpOnly: true // Improve security by preventing client-side access
+    res.cookie("token", token, {
+      httpOnly: true, //accessible only by web server
+      secure: true, //https
+      sameSite: "None",
+      maxAge: 7 * 24 * 60 * 60 * 1000, //cross-site cookie
     });
     res.cookie("isGoogleAuth", userData.isGoogleAuth, {
-      secure: true,
-      sameSite: "none", // For cross-site cookies
-      httpOnly: true // Improve security by preventing client-side access
+      httpOnly: true, //accessible only by web server
+      secure: true, //https
+      sameSite: "None",
+      maxAge: 7 * 24 * 60 * 60 * 1000, //cross-site cookie
     });
     // Send a postMessage to the main window with the user data
     res.send(`

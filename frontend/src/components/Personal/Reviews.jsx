@@ -17,50 +17,64 @@ const Reviews = () => {
   }, [user.id]);
   return (
     <Grid
-      px={20}
       sx={{
         backgroundColor: "#345457",
         justifyContent: "space-around",
       }}
       container
       minHeight={"100vh"}
-      rowGap={5}
+      rowGap={{xs:3,md:5}}
+      columnGap={2}
+      py={3}
     >
       {loading ? (
         <Box>Loading...</Box>
       ) : (
-        reviews.map((review) => (
+        reviews?.map((review) => (
           <Grid
             item
             key={review.bookId}
-            xs={8}
+            xs={10}
+            md={8}
             sx={{
+              borderRadius: "15px",
               display: "flex",
-              justifyContent: "stretch",
-              flexWrap: "wrap",
+              flexDirection: { xs: "column", md: "row" },
+              textAlign: "justify",
+              flexWrap: "nowrap",
               backgroundColor: "white",
-              height: "300px",
+              maxHeight: "100vh",
+              width: "100%",
+              p: { xs: "1.5rem", md: "1.5rem" },
             }}
           >
-            <Box
-              key={review.id}
-              sx={{ display: "flex", width: "100%", height: "100%" }}
+            <img
+              style={{
+                width: "30%",
+                height: "auto",
+                objectFit: "fill",
+                alignSelf: "center",
+              }}
+              src={review.url}
+            ></img>
+            <Stack
+              sx={{
+                width: { md: "100%" },
+                p: { md: "1.5rem" },
+                alignItems: "center",
+              }}
+              gap={1}
+              direction={"column"}
             >
-              <img
-                style={{ width: "30%", objectFit: "fill" }}
-                src={review.url}
-              ></img>
-              <Stack sx={{ width: "70%", p: 3 }} gap={1} direction={"column"}>
-                <Typography>{review.title}</Typography>
-                <Typography>{review.author}</Typography>
-                <Rating
-                  name="read-only"
-                  value={review.rating ? review.rating : 0}
-                  readOnly
-                ></Rating>
-                <Typography>{review.text}</Typography>
-              </Stack>
-            </Box>
+              <Typography variant="h6">{review.title}</Typography>
+              <Typography variant="h7">{review.author}</Typography>
+              <Rating
+                name="read-only"
+                value={review.rating ? review.rating : 0}
+                readOnly
+              ></Rating>
+              <Typography variant="body">{review.text}</Typography>
+            </Stack>
           </Grid>
         ))
       )}

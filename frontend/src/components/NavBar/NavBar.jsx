@@ -16,7 +16,6 @@ import LogoutIcon from "@mui/icons-material/Logout";
 import { AuthContext } from "../../context/AuthContext.jsx";
 import { useContext, useState } from "react";
 import { Stack } from "@mui/material";
-// import { useLogout } from "../../hooks/useLogOut.js"
 import { useAuthContext } from "../../hooks/useAuthContext.js";
 
 const settings = ["Your reviews", "Favorites"];
@@ -78,19 +77,18 @@ function NavBar() {
   return (
     <AppBar
       position="static"
-      sx={{ backgroundColor: "#345457", boxShadow: "none", pb: 4 }}
+      sx={{ display:"flex", backgroundColor: "#345457", boxShadow: "none",alignItems:"center",p:2 }}
     >
       <Container maxWidth="xl">
-        <Toolbar sx={{ display: "flex", justifyContent: "space-between" }}>
+        <Toolbar sx={{ display: "flex", justifyContent: "space-between",p:0 }}>
           <Box
             sx={{
-              display: { xs: "none", sm: "block" },
               backgroundImage: `url(${logo})`,
               backgroundSize: "120%",
               backgroundRepeat: "no-repeat",
               backgroundPosition: "center",
-              width: "200px",
-              height: "150px",
+              width: {xs:"100px",md:"200px"},
+              height: {xs:"100px",md:"150px"},
             }}
             onClick={()=>navigate("/")}
           ></Box>
@@ -124,7 +122,7 @@ function NavBar() {
             direction={"row"}
             sx={{ display: "flex", alignItems: "center" }}
           >
-            <Typography>
+            <Typography variant="subtitle1">
               {user.firstName && user.firstName}{" "}
               {user.lastName && user.lastName}
             </Typography>

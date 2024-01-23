@@ -65,6 +65,7 @@ const PublicPage = () => {
       sx={{
         backgroundColor: "#345457",
         display: "flex",
+        flexDirection: { xs: "column", md: "row" },
         minHeight: "100vh",
         maxHeight: "fit-content",
       }}
@@ -72,8 +73,8 @@ const PublicPage = () => {
     >
       <Box
         sx={{
-          width: "50%",
-          mx: 6,
+          width: { xs: "100%", md: "50%" },
+          mx: { xs: 0, md: 6 },
           textAlign: "center",
           display: "flex",
           flexDirection: "column",
@@ -85,16 +86,15 @@ const PublicPage = () => {
           REVEAL <span style={{ color: "#E6BE7F" }}>*</span> READ{" "}
           <span style={{ color: "#E6BE7F" }}>*</span> REVIEW
         </Typography>
-        <Container component="main" maxWidth="xs" sx={{ m: 8 }}>
+        <Container component="main" maxWidth="xs" sx={{ m: { xs: 3, md: 8 } }}>
           <Box
             sx={{
-              py: 3,
-              px: 5,
-              gap: 2,
+              py: { xs: 3, md: 4 },
+              px: { xs: 3, md: 4 },
+              gap: { xs: 2, md: 2 },
               alignItems: "stretch",
               display: "flex",
               flexDirection: "column",
-              // alignItems: "center",
               backgroundColor: "white",
               borderRadius: " .5rem",
             }}
@@ -103,16 +103,20 @@ const PublicPage = () => {
             <Button
               onClick={googleLogin}
               variant="contained"
-              sx={{ width: "100%" }}
+              sx={{ fontSize: "0.8rem" }}
             >
-              <GoogleIcon fontSize={"small"} sx={{ pr: 0.8 }} />
+              <GoogleIcon sx={{ mr: "5px" }} />
               Continue with Google
             </Button>
 
-            <Button onClick={() => navigate("/signup")} variant="contained">
+            <Button
+              onClick={() => navigate("/signup")}
+              sx={{ fontSize: "0.8rem" }}
+              variant="contained"
+            >
               Sign up with email
             </Button>
-            <Typography variant="body" color={"gray"}>
+            <Typography variant="caption text" color={"gray"}>
               By creating an account, you agree to the Bookverse Terms of
               Service and Privacy Policy.
             </Typography>
@@ -126,7 +130,7 @@ const PublicPage = () => {
 
       <Box
         sx={{
-          width: "50%",
+          width: { xs: "100%", md: "50%" },
           height: "80vh",
           display: "flex",
           justifyContent: "center",
@@ -137,11 +141,10 @@ const PublicPage = () => {
         {books.length > 0 && (
           <ImageList
             cols={3}
-            rowHeight={350}
             sx={{
               overflowY: "scroll",
               "&::-webkit-scrollbar": {
-                width: 0, // Hide scrollbar for webkit browsers
+                width: 0, 
               },
             }}
           >

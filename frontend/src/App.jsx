@@ -20,23 +20,26 @@ import {
   responsiveFontSizes,
 } from "@mui/material/styles";
 
-let theme = createTheme(
-  {
-    typography: {
-      h1: {
-        fontFamily: "'Dancing Script', cursive",
-        color: "#E6BE7F",
-      },
-      h5: {
-        fontFamily: "'Montserrat', sans-serif",
-        color: "white",
-      },
-      h2: {
-        fontFamily: "'Dancing Script', cursive",
-        color: "black",
-      },
-    }
-  })
+let theme = createTheme({
+  typography: {
+    h1: {
+      fontFamily: "'Dancing Script', cursive",
+      color: "#E6BE7F",
+    },
+    h5: {
+      fontFamily: "'Montserrat', sans-serif",
+      color: "white",
+    },
+    h2: {
+      fontFamily: "'Dancing Script', cursive",
+      color: "black",
+    },
+  },
+});
+
+
+theme.typography.h3 = theme.typography.h2;
+
 theme = responsiveFontSizes(theme);
 
 

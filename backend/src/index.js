@@ -35,9 +35,10 @@ app.use(
     secret: "secretcode",
     resave: true,
     saveUninitialized: true,
-    store: new MongoStore({ mongooseConnection: mongoose.connection }),
+    store: MongoStore.create({ mongoUrl: process.env.CONNECTION_URI }),
   })
 );
+
 app.use(errorHandler);
 
 //For Google oAuth. Take whole user object from auth and store it into session

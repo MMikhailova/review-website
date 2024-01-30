@@ -33,7 +33,8 @@ app.use(
   session({
     secret: "secretcode",
     resave: true,
-    saveUninitialized: true
+    saveUninitialized: true,
+    store: new MongoStore({ mongooseConnection: mongoose.connection }),
   })
 );
 app.use(errorHandler);

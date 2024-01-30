@@ -1,8 +1,6 @@
 Github Links for Awesome OAuth Strategies We Will Be Using: 
 
 Google OAuth2.0: https://github.com/jaredhanson/passport-google-oauth2
-Twitter OAuth2.0: https://github.com/hewmen/passport-twitter-oauth2
-Github OAuth2.0: https://github.com/jaredhanson/passport-github
 
 
 

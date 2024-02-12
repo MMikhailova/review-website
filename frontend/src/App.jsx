@@ -22,17 +22,22 @@ import {
 
 let theme = createTheme({
   typography: {
-    h1: {
+    h2: {
       fontFamily: "'Dancing Script', cursive",
-      color: "#E6BE7F",
+      color: "#345457",
     },
     h5: {
       fontFamily: "'Montserrat', sans-serif",
-      color: "white",
-    },
-    h2: {
-      fontFamily: "'Dancing Script', cursive",
       color: "black",
+    },
+  },
+  components: {
+    MuiButton: {
+      styleOverrides: {
+        root: {
+
+        },
+      },
     },
   },
 });
@@ -50,7 +55,7 @@ function App() {
   return (
     <ThemeProvider theme={theme}>
       <Router>
-        <NavBar />
+      
         <Routes>
           {user.id ? (
             <Route path="/" element={<HomePage />} />

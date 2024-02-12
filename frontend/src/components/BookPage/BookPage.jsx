@@ -11,6 +11,7 @@ import {
 } from "@mui/material";
 import getBook from "../../api/getBook.js";
 import NewBookForm from "./NewBookForm.jsx";
+import NavBar from "../NavBar/NavBar.jsx";
 // import Review from './Review.jsx';
 
 const BookPage = () => {
@@ -26,10 +27,12 @@ const BookPage = () => {
 
   return (
     <>
+      <NavBar />
       {error && <div>{error}</div>}
       <Container
         maxWidth={"xl"}
         sx={{
+          marginTop: "15vh",
           backgroundColor: "#345457",
           minHeight: "100vh",
           display: "flex",
@@ -43,7 +46,7 @@ const BookPage = () => {
             flexGrow: 1,
             backgroundColor: "#E9E1B9",
             width: { xs: "100vw", md: "60vw" },
-            borderRadius:"4px"
+            borderRadius: "4px",
           }}
         >
           <Grid container spacing={3} sx={{ p: 3 }}>
@@ -54,7 +57,8 @@ const BookPage = () => {
               sx={{
                 display: "flex",
                 flexDirection: "column",
-               margin:{xs:"auto",md:0}
+               alignSelf:"center",
+                margin: { xs: "auto", md: 0 },
               }}
             >
               <img src={book.url} />
@@ -103,7 +107,7 @@ const BookPage = () => {
                         display: "flex",
                         backgroundColor: "white",
                         flexDirection: "column",
-                        borderRadius:"4px",
+                        borderRadius: "4px",
                         p: 1,
                       }}
                     >

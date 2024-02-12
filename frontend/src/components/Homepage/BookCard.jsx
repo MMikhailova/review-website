@@ -12,7 +12,10 @@ import { Link, Stack, Tooltip, Typography } from "@mui/material";
 import { useContext, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
-import {deleteFromFavorites, addToFavorites} from "../../api/updateFavorites.js";
+import {
+  deleteFromFavorites,
+  addToFavorites,
+} from "../../api/updateFavorites.js";
 import { AuthContext } from "../../context/AuthContext";
 
 // import { BookContext } from "../../context/BookContext";
@@ -22,18 +25,18 @@ const truncateText = (text, maxLength) => {
   if (text.length <= maxLength) {
     return { truncated: false, text };
   }
-  return { truncated: true, text: text.slice(0, maxLength)+ "..." };
+  return { truncated: true, text: text.slice(0, maxLength) + "..." };
 };
 
 const countReviews = (array) => {
-  return array.length
-}
+  return array.length;
+};
 
 const ExpandMore = styled((props) => {
   const { expand, ...other } = props;
   return <IconButton {...other} />;
 })(({ theme, expand }) => ({
-  marginLeft:"auto",
+  marginLeft: "auto",
   transform: !expand ? "rotate(0deg)" : "rotate(180deg)",
   transition: theme.transitions.create("transform", {
     duration: theme.transitions.duration.shortest,
@@ -41,19 +44,19 @@ const ExpandMore = styled((props) => {
 }));
 
 export default function BookCard({ book, favorite }) {
-  const [isfavorite, setFavorite] = useState(favorite)
-  
+  const [isfavorite, setFavorite] = useState(favorite);
+
   const [expanded, setExpanded] = useState(false);
   const { truncated, text } = truncateText(
     book.description,
     MAX_DESCRIPTION_LENGTH
   );
-      const user = useContext(AuthContext);
-  const handleFavorites = async() => {
+  const user = useContext(AuthContext);
+  const handleFavorites = async () => {
     try {
       if (!isfavorite) {
         await addToFavorites(user.id, book._id);
-        setFavorite(true)
+        setFavorite(true);
       } else {
         await deleteFromFavorites(user.id, book._id);
         setFavorite(false);
@@ -62,7 +65,7 @@ export default function BookCard({ book, favorite }) {
       console.error("Error adding to favorites:", error);
     }
   };
-const navigate = useNavigate()
+  const navigate = useNavigate();
   const handleExpandClick = () => {
     setExpanded(!expanded);
   };
@@ -70,18 +73,21 @@ const navigate = useNavigate()
   return (
     <Card
       sx={{
-        width: 600,
-        height: {xs:"fit-content",md:400},
+        width: "100%",
+        height: { xs: "fit-content", md: 400 },
         display: "flex",
         flexDirection: { xs: "column", md: "row" },
-        py: { xs: "1.5rem", md: 0 },
-        textAlign:"justify"
+        p: { xs: 0.5, md: 1.5 },
+        textAlign: "justify",
+        backgroundColor: "#ede7c9",
       }}
     >
       <CardMedia
         sx={{
+          p: 1.5,
           width: { xs: "35%", md: "40%" },
           alignSelf: { xs: "center", md: "normal" },
+          objectFit: "contain",
         }}
         component="img"
         image={book.url}
@@ -97,7 +103,11 @@ const navigate = useNavigate()
             gap: 0.5,
           }}
         >
-          <Typography variant="subtitle1" color="text.secondary">
+          <Typography
+            textAlign={"center"}
+            variant="subtitle1"
+            color="text.secondary"
+          >
             {book.title}
           </Typography>
           <Typography variant="subtitle2" color="text.secondary">
@@ -130,7 +140,7 @@ const navigate = useNavigate()
           </Collapse>
         </CardContent>
 
-        <CardActions disableSpacing p={0}m={0}>
+        <CardActions disableSpacing p={0} m={0}>
           <Tooltip title="Add to favorites" arrow>
             <IconButton aria-label="add to favorites" onClick={handleFavorites}>
               {isfavorite ? <FavoriteIcon /> : <FavoriteBorderOutlinedIcon />}

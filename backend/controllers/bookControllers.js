@@ -54,6 +54,7 @@ const bookControllers = {
     return res.status(200).json({ result: result });
   },
   getBook: async (req, res) => {
+
     const {id} =req.params
     const result = await Book.findById({ _id: id }).populate({
       path: "reviews.reviewer",

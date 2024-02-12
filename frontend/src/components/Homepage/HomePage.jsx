@@ -1,5 +1,5 @@
 // Mui component
-import { CircularProgress, Grid } from "@mui/material";
+import { Box, CircularProgress, Container, Grid } from "@mui/material";
 // Hooks
 import { useContext, useEffect, useState } from "react";
 import { AuthContext } from "../../context/AuthContext.jsx";
@@ -8,8 +8,9 @@ import getBooks from "../../api/getBooks.js";
 import getUserInfo from "../../api/getUserInfo.js";
 // Child components
 import BookCard from "./BookCard.jsx";
-import ErrorAlert from "../ErrorPage/ErrorPage.jsx"
+import ErrorAlert from "../ErrorPage/ErrorPage.jsx";
 import { useNavigate } from "react-router-dom";
+import NavBar from "../NavBar/NavBar.jsx";
 
 // Checking for favored books in array of all books
 const isBookFavorited = (array, id) => {
@@ -22,28 +23,33 @@ const HomePage = () => {
   const [error, setError] = useState();
   const [loading, setLoading] = useState("");
   const [books, setBooks] = useState([]);
-  
 
   useEffect(() => {
     async function fetchData() {
-        const data =  await getUserInfo()
-         setFavoriteBooks(data?.favorites);
+      const data = await getUserInfo();
+      setFavoriteBooks(data?.favorites);
       await getBooks(setBooks, setError, setLoading);
-    
     }
     fetchData();
   }, []);
 
   return (
-    <>{error && <ErrorAlert/>}
+    <Box
+      sx={{
+        backgroundColor: "#345457",
+        flexGrow: 1,
+   
+      }}
+    >
+      <NavBar />
+      {error && <ErrorAlert />}
       <Grid
         sx={{
-          backgroundColor: "#345457",
-          justifyContent: "space-around",
+          marginTop: "15vh",
+          p: { xs: 0.5, md: 8},
         }}
-        height={"fit-content"}
         container
-        rowSpacing={4}
+        spacing={4}
       >
         {loading ? (
           <CircularProgress sx={{ color: "white" }} size={"3rem"} />
@@ -70,7 +76,7 @@ const HomePage = () => {
           ))
         )}
       </Grid>
-    </>
+    </Box>
   );
 };
 
